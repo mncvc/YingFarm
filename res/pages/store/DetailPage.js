@@ -51,7 +51,6 @@ let sales = {
     "address":member.local
 }
         setSale(sales); 
-
         firebase_db.ref('/sales/'+sales.pId+'/'+ route.params.idx).set(sale,function(error){
             console.log(error)
     
@@ -64,6 +63,20 @@ let sales = {
 
     }
 
+    const Review = () =>{
+ 
+        return 'review' in route.params ? (
+            <View style={styles.review}>    
+            {  
+                 route.params && route.params.review.map((content,i)=>{
+                    return (<ReviewCard content={content} key={i} navigation={navigation}/>)
+                })
+            }
+            </View>
+
+        ): (<View style={styles.review}/> )
+            
+        }
 
 
     const like = async () => {     
@@ -139,21 +152,10 @@ let sales = {
                       <Text style={{ fontSize: 10, fontWeight: '400', color: 'black' }}>10</Text>
                     </View>                
                 </View>
+            </View>
 
-                {/* <View style={styles.buttonGroup}>
-                    <TouchableOpacity style={styles.button} onPress={()=>like()}><Text style={styles.buttonText}>좋아요</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={()=>share()}><Text style={styles.buttonText}>팁 공유하기</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={()=>link(address)}><Text style={styles.buttonText}>외부 링크</Text></TouchableOpacity>
-                </View> */}
-            </View>
-      
-            <View style={styles.review}>
-            {
-                route.params && route.params.review.map((content,i)=>{
-                    return (<ReviewCard content={content} key={i} navigation={navigation}/>)
-                })
-            }
-            </View>
+           <Review/>
+                
         </ScrollView>
 
         <View style={{ position: 'absolute', bottom: -20,height: 80, display: 'flex', flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', padding: 12,  paddingTop: 0, backgroundColor: 'white', borderTopWidth: 1, borderColor: '#d4d4d4', marginBottom: 10 }} >
@@ -164,10 +166,17 @@ let sales = {
             <TouchableOpacity style={{ display: 'flex', alignItems: 'center',justifyContent: 'center', width: '87.5%', backgroundColor: 'orange', height: 42, borderRadius: 4 }}  onPress={()=>purchase()}>
                 <Text style={{ color: "white", fontSize: 16, fontWeight: '600' }} >구매하기</Text>
             </TouchableOpacity>
+      
         </View>
+      
+
     </View>
     )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
     container:{

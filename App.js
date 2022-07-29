@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import React, {useEffect, useReducer, useState} from 'react';
 // import MainPage from './pages/MainPage';
 // import DetailPage from './pages/DetailPage';
