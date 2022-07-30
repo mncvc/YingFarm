@@ -51,12 +51,12 @@ let sales = {
     "address":member.local
 }
         setSale(sales); 
-        firebase_db.ref('/sales/'+sales.pId+'/'+ route.params.idx).set(sale,function(error){
+        firebase_db.ref('/sales/'+sales.pId+'/'+ route.params.idx).set(sales,function(error){
             console.log(error)
     
         });
 
-        firebase_db.ref('/purchase/'+sales.cId+'/'+ route.params.idx).set(sale,function(error){
+        firebase_db.ref('/purchase/'+sales.cId+'/'+ route.params.idx).set(sales,function(error){
             console.log(error)
             Alert.alert("구매완료 !!")
         });
@@ -74,7 +74,9 @@ let sales = {
             }
             </View>
 
-        ): (<View style={styles.review}/> )
+        ): (<View style={styles.review}>
+            <Text style={{color:'#aaa', textAlign:'center', margin:15}}>리뷰가 없습니다 ...</Text>
+        </View> )
             
         }
 
