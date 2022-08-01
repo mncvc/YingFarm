@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Dimensions, Image } from 'react-native'
+import { View, Text, TouchableOpacity, TouchableHighlight,Dimensions, Image } from 'react-native'
 import React, { useState } from 'react'
 import Svg, { Path, WithLocalSvg } from 'react-native-svg'
 import Ionicons from '@expo/vector-icons/Ionicons'

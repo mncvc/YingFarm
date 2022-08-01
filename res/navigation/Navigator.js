@@ -17,7 +17,6 @@ import AboutPage from '../pages/store/AboutPage';
 import LikePage from '../pages/store/LikePage';
 import Store2 from '../pages/store/StorePage2';
 
-import Login from '../pages/store/LoginPage';
 
 import Detail from '../pages/community/Detail'
 // bottom tap page
@@ -30,6 +29,7 @@ import TabBarContainer from './TabBarContainer';
 import ShopCart from '../pages/mypage/ShopCart';
 import Favorite from '../pages/mypage/Favorites'
 import MyInfo from '../pages/mypage/Myinfo';
+import LoginPage from '../pages/mypage/LoginPage';
 
 // Community TopTap Page
 import Community from '../pages/community/Community'
