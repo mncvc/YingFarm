@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, TouchableOpacity,SafeAreaView,StyleSheet, TextInput, Text } from "react-native";
+import { View, TouchableOpacity,SafeAreaView,StyleSheet, TextInput, Text, Alert } from "react-native";
 import { firebase_db } from "../../../firebaseConfig";
 
 import * as Application from 'expo-application';
@@ -10,6 +10,8 @@ export default  function LoginPage({navigation,content}){
     const [state,setState] = useState(true);
     const [login,setLogin] = useState({});
     const [Id,setId] = useState("");
+    const [pwd,setPwd] = useState("");
+
     
     const isLogin = () =>{
         if(login != null){
@@ -25,16 +27,50 @@ export default  function LoginPage({navigation,content}){
 
     },[]);    
 
+    const doLogin = ()=>{
+        // 아이디 비밀번호 체크하기
+        firebase_db.ref('/users').once('value').then((snapshot) => {
+           let users = snapshot.val();
+               console.log(users);
+               
+           let user = users.filter((e)=>{
+            return e.id == Id
+        })
+        
+ 
+
+           if(user.id == Id){
+            if(user.pwd == pwd){
+                setLogin({
+                    "id":Id
+                })
+                setState(false); // 로그인 상태 확인.
+                Alert.alert("로긍니", `${user.id}님 환영합니다.`)
+            }else{
+                console.log("비밀번호가 틀렸습니다.");
+            }
+    
+        }else{
+            console.log('존재하지 않는 아이디 입니다.')
+        }
+    
+    
+        });
+
+}
+
 
     return(
 
 
         <View style={styles.contain}>
             <View style={styles.wrap}>
-                <TextInput style={{backgroundColor:'green'}} value={Id} placeholder='ID를 입력해주세요' onChangeText={(text)=>{setId(text)}}></TextInput>
+            <TextInput style={styles.loginText} placeholder='ID를 입력해주세요' onChangeText={(i)=>{setId(i)}}></TextInput>
+
+            <TextInput style={styles.loginText} placeholder='PW를 입력해주세요' onChangeText={(p)=>{setPwd(p)}}></TextInput>
             </View>
-            <TouchableOpacity style={{width:180,height:30,backgroundColor:'orange'}} onpress={null}>
-                <Text style={{textAlign:'center',lineHeight:'28'}}>로그인</Text>
+            <TouchableOpacity style={{width:180,height:30,backgroundColor:'orange'}} onpress={doLogin()}>
+                <Text style={{textAlign:'center',lineHeight:28}}>로그인</Text>
                 </TouchableOpacity>
         </View>
 
@@ -68,6 +104,14 @@ const styles = StyleSheet.create({
         borderColor:'#ddd',
         borderRadius:10,
         backgroundColor:'#fff'
+    },
+    loginText:{
+        width:'60%',
+        padding:2,
+        borderWidth:2,
+        borderColor:'darkgray',
+        borderRadius:10
+
     }
 
 

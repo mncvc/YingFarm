@@ -173,7 +173,9 @@ const MypageNavigator = () => {
                 headerTintColor: 'black'
             }}
         >
-          
+            <Stack.Screen name='LoginPage' component={LoginPage} 
+                options={{ title: '로그인' }}
+            />
             <Stack.Screen name='Mypage' component={Mypage} 
                 options={{ title: '나의 정보' }}
             />

@@ -28,6 +28,9 @@ const Mypage = ({ navigation, content }) => {
       <TouchableOpacity onPress={() => navigation.navigate('MypageNavigator',{ screen: 'Modify', params:{profile}})} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#8f8f8f', height: 44, borderRadius: 4, marginBottom: 16 }} >
         <Text style={{ color: '#8f8f8f', fontWeight: '500' }} >프로필 수정</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('MypageNavigator',{ screen: 'LoginPage', params:{profile}})} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#8f8f8f', height: 44, borderRadius: 4, marginBottom: 16 }} >
+        <Text style={{ color: '#8f8f8f', fontWeight: '500' }} >로그인</Text>
+      </TouchableOpacity>
 
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginBottom: 12 }} >
         <TouchableOpacity onPress={() => navigation.navigate('BuyList')} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 80 }} ><Ionicons name="cart-outline" size={48} /><Text style={{ fontSize: 12, fontWeight: '500' }} >구매 내용</Text></TouchableOpacity>
